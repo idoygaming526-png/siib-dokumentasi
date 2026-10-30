@@ -1,0 +1,26 @@
+digraph FL {
+  rankdir=TB; fontname="Helvetica"; nodesep=0.5; ranksep=0.45; dpi=200;
+  node [fontname="Helvetica", fontsize=12, style="filled", fillcolor="#E8F0FE", color="#2B5BA8"];
+  edge [fontname="Helvetica", fontsize=10, color="#444444"];
+  s [label="Mulai", shape=oval, fillcolor="#D4EDDA", color="#2E7D32"];
+  a [label="Staf membuka form\nBarang Keluar", shape=box, style="rounded,filled"];
+  b [label="Pilih barang, isi jumlah,\ntanggal, dan tujuan", shape=box, style="rounded,filled"];
+  c [label="Data valid?", shape=diamond];
+  d [label="Jumlah <= stok\ntersedia?", shape=diamond];
+  e [label="Mulai transaksi database", shape=box, style="rounded,filled"];
+  f [label="Simpan transaksi keluar", shape=box, style="rounded,filled"];
+  g [label="Kurangi stok barang", shape=box, style="rounded,filled"];
+  h [label="Commit transaksi", shape=box, style="rounded,filled"];
+  i [label="Stok <= stok minimum?", shape=diamond];
+  j [label="Tampilkan peringatan\nstok menipis", shape=box, style="rounded,filled", fillcolor="#FFF3CD", color="#B58900"];
+  k [label="Tampilkan pesan sukses", shape=box, style="rounded,filled"];
+  err1 [label="Tampilkan pesan\nkesalahan validasi", shape=box, style="rounded,filled", fillcolor="#F8D7DA", color="#B71C1C"];
+  err2 [label="Tolak: stok tidak cukup", shape=box, style="rounded,filled", fillcolor="#F8D7DA", color="#B71C1C"];
+  t [label="Selesai", shape=oval, fillcolor="#D4EDDA", color="#2E7D32"];
+  s->a->b->c;
+  c->d [label="Ya"]; c->err1 [label="Tidak"];
+  d->e [label="Ya"]; d->err2 [label="Tidak"];
+  e->f->g->h->i;
+  i->j [label="Ya"]; i->k [label="Tidak"];
+  j->k; k->t; err1->b [style=dashed]; err2->b [style=dashed];
+}

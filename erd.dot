@@ -1,0 +1,17 @@
+digraph ERD {
+  rankdir=LR; fontname="Helvetica"; nodesep=0.5; ranksep=1.1; dpi=200;
+  node [shape=plain, fontname="Helvetica", fontsize=11];
+  edge [fontname="Helvetica", fontsize=10, color="#444444"];
+  users [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#2B5BA8"><font color="white"><b>users</b></font></td></tr><tr><td align="left">PK id<br align="left"/>nama<br align="left"/>email (unik)<br align="left"/>password<br align="left"/>role (admin/staf/pimpinan)<br align="left"/></td></tr></table>>];
+  categories [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#2B5BA8"><font color="white"><b>categories</b></font></td></tr><tr><td align="left">PK id<br align="left"/>nama_kategori<br align="left"/></td></tr></table>>];
+  items [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#2B5BA8"><font color="white"><b>items</b></font></td></tr><tr><td align="left">PK id<br align="left"/>kode_barang (unik)<br align="left"/>nama_barang<br align="left"/>FK category_id<br align="left"/>satuan<br align="left"/>stok<br align="left"/>stok_minimum<br align="left"/>lokasi_rak<br align="left"/></td></tr></table>>];
+  suppliers [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#2B5BA8"><font color="white"><b>suppliers</b></font></td></tr><tr><td align="left">PK id<br align="left"/>nama_pemasok<br align="left"/>alamat<br align="left"/>telepon<br align="left"/></td></tr></table>>];
+  incoming [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#2B5BA8"><font color="white"><b>incoming_transactions</b></font></td></tr><tr><td align="left">PK id<br align="left"/>FK item_id<br align="left"/>FK supplier_id<br align="left"/>FK user_id<br align="left"/>jumlah<br align="left"/>tanggal<br align="left"/>keterangan<br align="left"/></td></tr></table>>];
+  outgoing [label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="4"><tr><td bgcolor="#2B5BA8"><font color="white"><b>outgoing_transactions</b></font></td></tr><tr><td align="left">PK id<br align="left"/>FK item_id<br align="left"/>FK user_id<br align="left"/>jumlah<br align="left"/>tanggal<br align="left"/>tujuan<br align="left"/></td></tr></table>>];
+  categories -> items [label="1 : N", arrowhead=crow];
+  items -> incoming [label="1 : N", arrowhead=crow];
+  suppliers -> incoming [label="1 : N", arrowhead=crow];
+  users -> incoming [label="1 : N", arrowhead=crow];
+  items -> outgoing [label="1 : N", arrowhead=crow];
+  users -> outgoing [label="1 : N", arrowhead=crow];
+}

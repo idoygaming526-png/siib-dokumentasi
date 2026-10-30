@@ -1,0 +1,27 @@
+digraph UC {
+  rankdir=LR; fontname="Helvetica"; nodesep=0.35; ranksep=1.6; dpi=200;
+  node [fontname="Helvetica", fontsize=12];
+  edge [fontname="Helvetica", fontsize=10, arrowhead=none, color="#444444"];
+  node [shape=box, style="rounded,filled", fillcolor="#E8F0FE", color="#2B5BA8", width=1.5];
+  Admin [label="Admin", shape=box, fillcolor="#FFF3CD", color="#B58900"];
+  Staf [label="Staf Gudang", shape=box, fillcolor="#FFF3CD", color="#B58900"];
+  Pimpinan [label="Pimpinan", shape=box, fillcolor="#FFF3CD", color="#B58900"];
+  subgraph cluster_sys {
+    label="Sistem Informasi Inventaris Barang"; style="rounded,dashed"; color="#2B5BA8"; fontsize=14;
+    node [shape=ellipse, style=filled, fillcolor="#E8F0FE", color="#2B5BA8"];
+    UC1 [label="Login / Logout"];
+    UC2 [label="Kelola Data Pengguna"];
+    UC3 [label="Kelola Data Barang\n& Kategori"];
+    UC4 [label="Kelola Data Pemasok"];
+    UC5 [label="Catat Barang Masuk"];
+    UC6 [label="Catat Barang Keluar"];
+    UC7 [label="Lihat Stok Barang"];
+    UC8 [label="Cetak Laporan Stok\n& Transaksi"];
+    UC9 [label="Notifikasi Stok Minimum"];
+  }
+  Admin -> UC1; Admin -> UC2; Admin -> UC3; Admin -> UC4; Admin -> UC7;
+  Staf -> UC1; Staf -> UC5; Staf -> UC6; Staf -> UC7;
+  Pimpinan -> UC1; Pimpinan -> UC8; Pimpinan -> UC7;
+  UC7 -> UC9 [style=dashed, arrowhead=open, label="«extend»"];
+  Admin -> UC8;
+}
