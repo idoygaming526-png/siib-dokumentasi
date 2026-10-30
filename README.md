@@ -24,4 +24,4 @@ Diagram dibuat dari berkas `.dot` dengan Graphviz: `dot -Tpng -o erd.png erd.dot
 
 ## Penyusun
 
-[Nama Mahasiswa] — [NIM]
+[Zlatan Fathir Ridho] — [42250329]
